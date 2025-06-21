@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Lit - Your Literary Community</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container flex items-center justify-between py-16">
+            <div class="navbar__logo">
+                <a href="#" data-page="home" class="logo">Club Lit</a>
+            </div>
+            <div class="navbar__menu">
+                <ul class="flex gap-16">
+                    <li><a href="#" data-page="discover" class="nav-link">Discover</a></li>
+                    <li><a href="#" data-page="clubs" class="nav-link">Book Clubs</a></li>
+                    <li><a href="#" data-page="about" class="nav-link">About</a></li>
+                </ul>
+            </div>
+            <div class="navbar__auth flex gap-8">
+                <button class="btn btn--outline login-btn" data-page="login">Login</button>
+                <button class="btn btn--primary signup-btn" data-page="signup">Sign Up</button>
+                <div class="user-profile hidden">
+                    <div class="flex items-center gap-8">
+                        <img src="" alt="User Avatar" class="user-avatar">
+                        <span class="user-name"></span>
+                        <div class="dropdown">
+                            <ul>
+                                <li><a href="#" data-page="dashboard">Dashboard</a></li>
+                                <li><a href="#" data-page="profile">Profile</a></li>
+                                <li><a href="#" data-page="settings">Settings</a></li>
+                                <li><a href="#" class="logout-btn">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Home Page / Landing Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="container">
+                    <div class="hero__content">
+                        <h1>Discover, Read, Connect</h1>
+                        <p>Join the ultimate literary community for book lovers. Discover new books, join vibrant book clubs, and connect with fellow readers.</p>
+                        <div class="hero__cta flex gap-16 mt-8">
+                            <button class="btn btn--primary btn--lg" data-page="signup">Join Now</button>
+                            <button class="btn btn--outline btn--lg" data-page="discover">Explore Books</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="featured-books">
+                <div class="container">
+                    <h2>Featured Books</h2>
+                    <div class="book-carousel">
+                        <div class="carousel-controls">
+                            <button class="carousel-prev">&lt;</button>
+                            <button class="carousel-next">&gt;</button>
+                        </div>
+                        <div class="book-grid" id="featured-books-grid">
+                            <!-- Books will be loaded here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="platform-features">
+                <div class="container">
+                    <h2>Why Club Lit?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📚</div>
+                            <h3>Extensive Library</h3>
+                            <p>Access thousands of books across all genres and discover your next favorite read.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">👥</div>
+                            <h3>Vibrant Community</h3>
+                            <p>Join book clubs and engage in meaningful discussions with fellow readers.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h3>Read Anywhere</h3>
+                            <p>Sync your reading progress across all your devices and never lose your place.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Personalized Recommendations</h3>
+                            <p>Get book suggestions tailored to your reading preferences and history.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-clubs-preview">
+                <div class="container">
+                    <div class="section-header flex justify-between items-center">
+                        <h2>Active Book Clubs</h2>
+                        <a href="#" data-page="clubs" class="btn btn--outline">View All Clubs</a>
+                    </div>
+                    <div class="clubs-grid" id="featured-clubs-grid">
+                        <!-- Clubs will be loaded here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authentication Pages -->
+        <section id="login" class="page">
+            <div class="container">
+                <div class="auth-container">
+                    <h2>Welcome Back</h2>
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="login-email" class="form-label">Email</label>
+                            <input type="email" id="login-email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password" class="form-label">Password</label>
+                            <input type="password" id="login-password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                    </form>
+                    <p class="auth-toggle">Don't have an account? <a href="#" data-page="signup">Sign up</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="signup" class="page">
+            <div class="container">
+                <div class="auth-container">
+                    <h2>Create an Account</h2>
+                    <form id="signup-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="signup-name" class="form-label">Full Name</label>
+                            <input type="text" id="signup-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email" class="form-label">Email</label>
+                            <input type="email" id="signup-email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password" class="form-label">Password</label>
+                            <input type="password" id="signup-password" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Reading Preferences</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" value="Fiction"> Fiction</label>
+                                <label><input type="checkbox" value="Science Fiction"> Science Fiction</label>
+                                <label><input type="checkbox" value="Romance"> Romance</label>
+                                <label><input type="checkbox" value="Mystery"> Mystery</label>
+                                <label><input type="checkbox" value="Biography"> Biography</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Create Account</button>
+                    </form>
+                    <p class="auth-toggle">Already have an account? <a href="#" data-page="login">Login</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Dashboard -->
+        <section id="dashboard" class="page">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2>Your Dashboard</h2>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card reading-progress">
+                        <div class="card__header">
+                            <h3>Current Reading</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="current-book">
+                                <img src="" alt="Book Cover" class="current-book-cover">
+                                <div class="book-info">
+                                    <h4 class="current-book-title"></h4>
+                                    <p class="current-book-author"></p>
+                                    <div class="progress-container">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill"></div>
+                                        </div>
+                                        <span class="progress-text"></span>
+                                    </div>
+                                    <button class="btn btn--primary continue-reading" data-page="reader">Continue Reading</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card recommendations">
+                        <div class="card__header">
+                            <h3>Recommended for You</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="recommendations-grid" id="recommendations-grid">
+                                <!-- Recommendations will be loaded here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card club-activities">
+                        <div class="card__header">
+                            <h3>Your Book Clubs</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="user-clubs" id="user-clubs">
+                                <!-- User clubs will be loaded here dynamically -->
+                            </div>
+                            <button class="btn btn--outline btn--full-width mt-8" data-page="clubs">Discover More Clubs</button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card reading-stats">
+                        <div class="card__header">
+                            <h3>Reading Statistics</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-value" id="books-read">0</span>
+                                    <span class="stat-label">Books Read</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="pages-read">0</span>
+                                    <span class="stat-label">Pages Read</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="reading-days">0</span>
+                                    <span class="stat-label">Reading Days</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="club-posts">0</span>
+                                    <span class="stat-label">Club Posts</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Discovery / Catalog -->
+        <section id="discover" class="page">
+            <div class="container">
+                <div class="discover-header">
+                    <h2>Discover Books</h2>
+                    <div class="search-filter">
+                        <div class="search-container">
+                            <input type="text" id="book-search" class="form-control" placeholder="Search books...">
+                            <button class="search-btn btn btn--primary">Search</button>
+                        </div>
+                        <div class="filter-container">
+                            <select id="genre-filter" class="form-control">
+                                <option value="">All Genres</option>
+                                <option value="Fiction">Fiction</option>
+                                <option value="Classic">Classic</option>
+                                <option value="Science Fiction">Science Fiction</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Dystopian">Dystopian</option>
+                                <option value="Coming of Age">Coming of Age</option>
+                                <option value="Epic">Epic</option>
+                            </select>
+                            <select id="sort-books" class="form-control">
+                                <option value="rating">Sort by Rating</option>
+                                <option value="title">Sort by Title</option>
+                                <option value="author">Sort by Author</option>
+                                <option value="published">Sort by Year</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="books-grid" id="books-grid">
+                    <!-- Books will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Reader Interface -->
+        <section id="reader" class="page">
+            <div class="reader-container">
+                <div class="reader-header">
+                    <button class="btn btn--outline back-btn" data-page="dashboard">Back to Dashboard</button>
+                    <div class="book-info">
+                        <h3 id="reader-book-title"></h3>
+                        <p id="reader-book-author"></p>
+                    </div>
+                    <div class="reader-controls">
+                        <button class="btn btn--outline bookmark-btn">Bookmark</button>
+                        <div class="font-size-control">
+                            <button class="btn btn--outline font-size-decrease">A-</button>
+                            <button class="btn btn--outline font-size-increase">A+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="reader-content">
+                    <div class="book-content" id="book-content">
+                        <!-- Book content will be loaded here -->
+                    </div>
+                </div>
+                <div class="reader-footer">
+                    <div class="page-controls">
+                        <button class="btn btn--outline prev-page">Previous</button>
+                        <span class="page-indicator">Page <span id="current-page">1</span> of <span id="total-pages">400</span></span>
+                        <button class="btn btn--outline next-page">Next</button>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="reader-progress-fill"></div>
+                        </div>
+                        <span class="progress-text" id="reader-progress-text">0%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Detail Page -->
+        <section id="book-detail" class="page">
+            <div class="container">
+                <div class="book-detail-container">
+                    <button class="btn btn--outline back-btn" data-page="discover">Back to Discover</button>
+                    
+                    <div class="book-detail-content">
+                        <div class="book-detail-image">
+                            <img src="" alt="Book Cover" id="detail-book-cover">
+                        </div>
+                        <div class="book-detail-info">
+                            <h2 id="detail-book-title"></h2>
+                            <p class="book-author">By <span id="detail-book-author"></span></p>
+                            <div class="book-meta">
+                                <span class="book-rating" id="detail-book-rating"></span>
+                                <span class="book-reviews" id="detail-book-reviews"></span>
+                                <span class="book-published" id="detail-book-published"></span>
+                                <span class="book-pages" id="detail-book-pages"></span>
+                            </div>
+                            <div class="book-tags" id="detail-book-tags">
+                                <!-- Tags will be loaded here -->
+                            </div>
+                            <p class="book-description" id="detail-book-description"></p>
+                            <div class="book-actions">
+                                <button class="btn btn--primary start-reading" id="start-reading">Start Reading</button>
+                                <button class="btn btn--outline add-to-shelf">Add to Shelf</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book-reviews-section">
+                        <h3>Reviews</h3>
+                        <div class="reviews-container" id="book-reviews-container">
+                            <!-- Reviews will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Clubs -->
+        <section id="clubs" class="page">
+            <div class="container">
+                <div class="clubs-header">
+                    <h2>Book Clubs</h2>
+                    <div class="clubs-actions">
+                        <button class="btn btn--primary create-club-btn">Create a Club</button>
+                        <div class="search-container">
+                            <input type="text" id="club-search" class="form-control" placeholder="Search clubs...">
+                            <button class="search-btn btn btn--primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clubs-grid" id="clubs-grid">
+                    <!-- Clubs will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Club Detail Page -->
+        <section id="club-detail" class="page">
+            <div class="container">
+                <div class="club-detail-container">
+                    <button class="btn btn--outline back-btn" data-page="clubs">Back to Clubs</button>
+                    
+                    <div class="club-header">
+                        <div class="club-header-image">
+                            <img src="" alt="Club Image" id="detail-club-image">
+                        </div>
+                        <div class="club-header-info">
+                            <h2 id="detail-club-name"></h2>
+                            <p class="club-description" id="detail-club-description"></p>
+                            <div class="club-meta">
+                                <span class="club-members" id="detail-club-members"></span>
+                                <span class="club-category" id="detail-club-category"></span>
+                                <span class="club-current-book" id="detail-club-book"></span>
+                                <span class="club-next-meeting" id="detail-club-meeting"></span>
+                            </div>
+                            <div class="club-actions">
+                                <button class="btn btn--primary join-club-btn" id="join-club-btn">Join Club</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="club-tabs">
+                        <div class="tab-headers">
+                            <button class="tab-btn active" data-tab="discussions">Discussions</button>
+                            <button class="tab-btn" data-tab="members">Members</button>
+                            <button class="tab-btn" data-tab="reading-schedule">Reading Schedule</button>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="discussions-tab">
+                                <div class="discussions-container">
+                                    <div class="new-discussion">
+                                        <button class="btn btn--primary new-discussion-btn">Start New Discussion</button>
+                                    </div>
+                                    <div class="discussions-list" id="discussions-list">
+                                        <!-- Discussions will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane" id="members-tab">
+                                <div class="members-container" id="members-container">
+                                    <!-- Members will be loaded here -->
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane" id="reading-schedule-tab">
+                                <div class="reading-schedule-container">
+                                    <div class="current-reading">
+                                        <h3>Current Reading</h3>
+                                        <div class="schedule-book" id="schedule-current-book">
+                                            <!-- Current book details -->
+                                        </div>
+                                    </div>
+                                    <div class="upcoming-readings">
+                                        <h3>Upcoming Books</h3>
+                                        <div class="upcoming-list" id="upcoming-list">
+                                            <!-- Upcoming books will be loaded here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Club Discussion Detail -->
+        <section id="discussion-detail" class="page">
+            <div class="container">
+                <div class="discussion-detail-container">
+                    <button class="btn btn--outline back-btn" id="back-to-club">Back to Club</button>
+                    
+                    <div class="discussion-header">
+                        <h2 id="discussion-title"></h2>
+                        <div class="discussion-meta">
+                            <span class="discussion-author" id="discussion-author"></span>
+                            <span class="discussion-date" id="discussion-date"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="discussion-content" id="discussion-content">
+                        <!-- Discussion content will be loaded here -->
+                    </div>
+                    
+                    <div class="discussion-replies">
+                        <h3>Replies</h3>
+                        <div class="replies-list" id="replies-list">
+                            <!-- Replies will be loaded here -->
+                        </div>
+                        <div class="new-reply">
+                            <h4>Add Your Reply</h4>
+                            <form id="reply-form">
+                                <textarea class="form-control" id="reply-content" rows="4" placeholder="Share your thoughts..."></textarea>
+                                <button type="submit" class="btn btn--primary mt-8">Post Reply</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Chat Interface -->
+        <section id="live-chat" class="page">
+            <div class="container">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <button class="btn btn--outline back-btn" id="back-from-chat">Back</button>
+                        <h2 id="chat-club-name"></h2>
+                        <div class="chat-info">
+                            <span id="chat-members-online">0 members online</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Chat messages will be loaded here -->
+                    </div>
+                    
+                    <div class="chat-input">
+                        <form id="chat-form">
+                            <input type="text" class="form-control" id="chat-message" placeholder="Type your message...">
+                            <button type="submit" class="btn btn--primary">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="admin-dashboard" class="page">
+            <div class="container">
+                <div class="admin-header">
+                    <h2>Admin Dashboard</h2>
+                </div>
+                
+                <div class="admin-tabs">
+                    <div class="tab-headers">
+                        <button class="tab-btn active" data-tab="analytics">Analytics</button>
+                        <button class="tab-btn" data-tab="users">User Management</button>
+                        <button class="tab-btn" data-tab="content">Content Management</button>
+                        <button class="tab-btn" data-tab="moderation">Moderation</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="analytics-tab">
+                            <div class="analytics-container">
+                                <div class="analytics-summary">
+                                    <div class="analytics-card">
+                                        <h3>Total Users</h3>
+                                        <div class="analytics-value" id="total-users"></div>
+                                    </div>
+                                    <div class="analytics-card">
+                                        <h3>Active Users</h3>
+                                        <div class="analytics-value" id="active-users"></div>
+                                    </div>
+                                    <div class="analytics-card">
+                                        <h3>Total Books</h3>
+                                        <div class="analytics-value" id="total-books"></div>
+                                    </div>
+                                    <div class="analytics-card">
+                                        <h3>Total Clubs</h3>
+                                        <div class="analytics-value" id="total-clubs"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="analytics-charts">
+                                    <div class="chart-container">
+                                        <h3>Daily Reading Hours</h3>
+                                        <canvas id="reading-chart"></canvas>
+                                    </div>
+                                    <div class="chart-container">
+                                        <h3>Popular Genres</h3>
+                                        <canvas id="genres-chart"></canvas>
+                                    </div>
+                                    <div class="chart-container">
+                                        <h3>User Engagement</h3>
+                                        <img src="https://pplx-res.cloudinary.com/image/upload/v1750511577/pplx_code_interpreter/0e6c877c_a0v4eo.jpg" alt="User Engagement Analytics" class="engagement-chart">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="users-tab">
+                            <div class="users-management">
+                                <div class="users-actions">
+                                    <div class="search-container">
+                                        <input type="text" id="user-search" class="form-control" placeholder="Search users...">
+                                        <button class="search-btn btn btn--primary">Search</button>
+                                    </div>
+                                    <button class="btn btn--primary add-user-btn">Add New User</button>
+                                </div>
+                                <div class="users-table-container">
+                                    <table class="users-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Books Read</th>
+                                                <th>Clubs Joined</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="users-table-body">
+                                            <!-- Users will be loaded here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="content-tab">
+                            <div class="content-management">
+                                <div class="content-tabs">
+                                    <button class="content-tab active" data-content="books">Books</button>
+                                    <button class="content-tab" data-content="clubs">Book Clubs</button>
+                                </div>
+                                
+                                <div class="content-pane active" id="books-content">
+                                    <div class="content-actions">
+                                        <button class="btn btn--primary add-book-btn">Add New Book</button>
+                                    </div>
+                                    <div class="books-table-container">
+                                        <table class="books-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Title</th>
+                                                    <th>Author</th>
+                                                    <th>Genre</th>
+                                                    <th>Rating</th>
+                                                    <th>Published</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="books-table-body">
+                                                <!-- Books will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                                <div class="content-pane" id="clubs-content">
+                                    <div class="content-actions">
+                                        <button class="btn btn--primary add-club-btn">Add New Club</button>
+                                    </div>
+                                    <div class="clubs-table-container">
+                                        <table class="clubs-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Category</th>
+                                                    <th>Members</th>
+                                                    <th>Current Book</th>
+                                                    <th>Next Meeting</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="clubs-table-body">
+                                                <!-- Clubs will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="moderation-tab">
+                            <div class="moderation-container">
+                                <h3>Recent Discussions to Moderate</h3>
+                                <div class="discussions-moderation" id="discussions-moderation">
+                                    <!-- Discussions to moderate will be loaded here -->
+                                </div>
+                                
+                                <h3>Recent Reports</h3>
+                                <div class="reports-moderation" id="reports-moderation">
+                                    <!-- Reports will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Profile Page -->
+        <section id="profile" class="page">
+            <div class="container">
+                <div class="profile-container">
+                    <h2>Your Profile</h2>
+                    
+                    <div class="profile-content">
+                        <div class="profile-sidebar">
+                            <div class="profile-avatar">
+                                <img src="" alt="User Avatar" id="profile-avatar">
+                                <button class="btn btn--outline change-avatar-btn">Change Avatar</button>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span class="stat-value" id="profile-books-read">0</span>
+                                    <span class="stat-label">Books Read</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="profile-clubs-joined">0</span>
+                                    <span class="stat-label">Clubs Joined</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-main">
+                            <form id="profile-form">
+                                <div class="form-group">
+                                    <label for="profile-name" class="form-label">Full Name</label>
+                                    <input type="text" id="profile-name" class="form-control" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-email" class="form-label">Email</label>
+                                    <input type="email" id="profile-email" class="form-control" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Reading Preferences</label>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" value="Fiction" id="pref-fiction"> Fiction</label>
+                                        <label><input type="checkbox" value="Science Fiction" id="pref-scifi"> Science Fiction</label>
+                                        <label><input type="checkbox" value="Romance" id="pref-romance"> Romance</label>
+                                        <label><input type="checkbox" value="Mystery" id="pref-mystery"> Mystery</label>
+                                        <label><input type="checkbox" value="Biography" id="pref-biography"> Biography</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn--primary">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="container">
+                <div class="about-container">
+                    <h2>About Club Lit</h2>
+                    
+                    <div class="about-content">
+                        <div class="about-section">
+                            <h3>Our Mission</h3>
+                            <p>Club Lit is dedicated to building a vibrant community for book lovers worldwide. We believe in the power of literature to connect people, inspire conversations, and broaden perspectives. Our platform brings together readers from all walks of life to discover new books, share their reading experiences, and engage in meaningful discussions.</p>
+                        </div>
+                        
+                        <div class="about-section">
+                            <h3>What We Offer</h3>
+                            <ul class="feature-list">
+                                <li>Access to a curated library of books across various genres</li>
+                                <li>Virtual book clubs to connect with fellow readers</li>
+                                <li>Personalized book recommendations based on your preferences</li>
+                                <li>Reading progress tracking and synchronization across devices</li>
+                                <li>Lively discussions and real-time conversations about books</li>
+                                <li>Detailed analytics to understand your reading habits</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="about-section">
+                            <h3>Contact Us</h3>
+                            <p>Have questions or suggestions? We'd love to hear from you!</p>
+                            <p>Email: <a href="mailto:contact@clublit.com">contact@clublit.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chatbot Interface -->
+    <div class="chatbot-container">
+        <div class="chatbot-toggle">
+            <button class="chatbot-toggle-btn">
+                <span class="chatbot-icon">💬</span>
+            </button>
+        </div>
+        
+        <div class="chatbot-panel hidden">
+            <div class="chatbot-header">
+                <h3>Club Lit Assistant</h3>
+                <button class="chatbot-close-btn">&times;</button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="chatbot-message bot">
+                    <div class="message-content">Hello! I'm your Club Lit assistant. How can I help you today?</div>
+                </div>
+            </div>
+            
+            <div class="chatbot-input">
+                <form id="chatbot-form">
+                    <input type="text" id="chatbot-message" class="form-control" placeholder="Type your question...">
+                    <button type="submit" class="btn btn--primary">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Club Lit</h2>
+                    <p>Your Literary Community</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#" data-page="discover">Books</a></li>
+                            <li><a href="#" data-page="clubs">Book Clubs</a></li>
+                            <li><a href="#" data-page="about">About Us</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Account</h4>
+                        <ul>
+                            <li><a href="#" data-page="login">Login</a></li>
+                            <li><a href="#" data-page="signup">Sign Up</a></li>
+                            <li><a href="#" data-page="dashboard">Dashboard</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Club Lit. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
